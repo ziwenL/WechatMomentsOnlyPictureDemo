@@ -28,26 +28,18 @@ class ExampleAdapter(private var context: Context, private var data: List<Exampl
     }
 
     override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
-        holder.tvName.setText("姓名" + position)
-        holder.tvContent.setText("" + position + "内容")
+        holder.tvName.setText(String.format("姓名%s",position))
+        holder.tvContent.setText(String.format("%s内容",position))
         GlideUtil.loadAvatarPicture(NetImageUtil.getPicUrl(position), holder.ivAvatar)
-
         GlideUtil.loadPicture(NetImageUtil.getPicUrl(position), holder.ivPicture)
 
 
     }
 
     class ExampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView
-        val tvContent: TextView
-        val ivAvatar: ImageView
-        val ivPicture: ImageView
-
-        init {
-            tvName = itemView.findViewById(R.id.tv_name)
-            tvContent = itemView.findViewById(R.id.tv_content)
-            ivAvatar = itemView.findViewById(R.id.iv_avatar)
-            ivPicture = itemView.findViewById(R.id.iv_picture)
-        }
+        val tvName: TextView = itemView.findViewById(R.id.tv_name)
+        val tvContent: TextView = itemView.findViewById(R.id.tv_content)
+        val ivAvatar: ImageView = itemView.findViewById(R.id.iv_avatar)
+        val ivPicture: ImageView = itemView.findViewById(R.id.iv_picture)
     }
 }
